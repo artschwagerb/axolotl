@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<h3>{{ user }}</h3>
+<div class="row">
+	<div class="col-md-6">
+		<table class="table">
+			<tr>
+				<td>First Name</td>
+				<td>{{ user.first_name }}</td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td>{{ user.last_name }}</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<td>Date Joined</td>
+				<td>{{ user.date_joined }}</td>
+			</tr>
+			<tr>
+				<td>Roles</td>
+				<td>
+					<span class="label label-primary">User</span>
+					{% if user.is_staff %}
+						<span class="label label-warning">Staff</span>
+					{% endif %}
+					{% if user.is_superuser %}
+						<span class="label label-danger">Super User</span>
+					{% endif %}
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+{% endblock %}

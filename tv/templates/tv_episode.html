@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ show.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ episode.show.name }} <small>S{{ episode.season.number }}E{{ episode.number }} {{ episode.name }}</small></h2>
+<p>{{ episode.description }}</p>
+<dl class="dl-horizontal">
+  <dt>Date Aired</dt>
+    <dd>{{ episode.date_aired }}</dd>
+  <dt>Date Updated</dt>
+    <dd>{{ episode.date_updated }}</dd>
+  <dt>Rating</dt>
+    <dd>{{ episode.rating }}</dd>
+</dl>
+    
+{% endblock %}
+

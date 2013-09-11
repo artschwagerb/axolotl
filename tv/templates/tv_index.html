@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}TV Shows{% endblock %}
+
+{% block content %}
+<h3>TV Shows</h3>
+{% if latest_show_list %}
+    <dl class="dl-horizontal">
+    {% for show in latest_show_list %}
+        <dt><a href="/tv/show/{{ show.tvdbid }}">{{ show.name }}</a></dt><dd>{{ show.description }}</dd>
+    {% endfor %}
+    </dl>
+{% else %}
+    <p>No shows are available.</p>
+{% endif %}
+{% endblock %}

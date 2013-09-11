@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Links{% endblock %}
+
+{% block content %}
+<h3>Public Links</h3>
+{% if latest_link_list %}
+    <dl class="dl-horizontal">
+    {% for link in latest_link_list %}
+        <dt><a href="/bitsync/link/{{ link.pk }}">{{ link.item.name }}</a></dt><dd>{{ link.item.description }}</dd>
+    {% endfor %}
+    </dl>
+{% else %}
+    <p>No links are available.</p>
+{% endif %}
+<h3>Private Links</h3>
+{% if your_link_list %}
+    <dl class="dl-horizontal">
+    {% for link in your_link_list %}
+        <dt><a href="/bitsync/link/{{ link.pk }}">{{ link.item.name }}</a></dt><dd>{{ link.item.description }}</dd>
+    {% endfor %}
+    </dl>
+{% else %}
+    <p>No links are available.</p>
+{% endif %}
+{% endblock %}

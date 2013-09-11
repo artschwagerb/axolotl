@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ show.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ show.name }}</h2>
+<img src="{{ show_banner }}">
+<h4>Seasons</h4>
+<ul class="nav nav-pills">
+{% for season in season_list %}
+	<li class="active"><a href="/tv/season/{{ season.season_tvdbid }}">{{ season.number }}</a></li>
+{% endfor %}
+</ul>
+<p>{{ show.description }}</p>
+<dl class="dl-horizontal">
+  <dt>Date Updated</dt>
+    <dd>{{ show.date_updated }}</dd>
+  <dt>Genre</dt>
+    <dd>{{ show.genre }}</dd>
+  <dt>Rating</dt>
+    <dd>{{ show.content_rating }}</dd>
+  <dt>Network</dt>
+    <dd>{{ show.network }}</dd>
+  <dt>Actors</dt>
+    <dd>{{ show.actors }}</dd>
+  <dt>Runtime</dt>
+    <dd>{{ show.runtime }}</dd>
+  <dt>Airs</dt>
+    <dd>{{ show.airs_dayofweek }} {{ show.airs_time }}</dd>
+</dl>
+{% endblock %}
+

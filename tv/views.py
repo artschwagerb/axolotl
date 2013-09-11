@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.utils import timezone
 
-from tv.models import Show, Season, Viewed, Episode
+from tv.models import *
 
 @login_required
 def index(request):

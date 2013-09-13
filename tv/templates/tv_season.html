@@ -4,7 +4,7 @@
 
 {% block content %}
 <h2>{{ show.name }}</h2>
-<h4>Seasons</h4>
+<img style="-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(80%, transparent), to(white)); margin-bottom: 40px;" src="{{ show_banner }}">
 	<ul class="nav nav-pills">
 	{% for season in season_list %}
         <li class="active"><a href="{% url "tv-season" pk=season.id %}">{{ season.number }}</a></li>

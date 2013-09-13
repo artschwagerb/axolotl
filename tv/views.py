@@ -42,14 +42,21 @@ def show(request, pk):
 @login_required
 def season(request, pk):
 	season_item = Season.objects.get(pk = pk)
-	seasons_list = season_item.show.season_set.all()
-	episodes_list = season_item.episode_set.all()
+	seasons_list = season_item.show.season_set.all().order_by('number')
+	episodes_list = season_item.episode_set.all().order_by('number')
+	banner = ''
+	req = urllib2.Request("http://yarrr.me/api/show?id="+season_item.show.tvdbid, None, {'user-agent':'Chrome/28.0.1500.72'})
+	opener = urllib2.build_opener()
+	f = opener.open(req)
+	showapi = json.load(f)
+	banner = showapi[0]['banner']
 	template = loader.get_template('tv_season.html')
 	context = RequestContext(request, {
 		'season': season_item,
 		'show': season_item.show,
 		'episode_list': episodes_list,
 		'season_list': seasons_list,
+		'show_banner': banner,
 	})
 	return HttpResponse(template.render(context))
 

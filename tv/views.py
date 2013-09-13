@@ -20,11 +20,11 @@ def index(request):
 	return HttpResponse(template.render(context))
 
 @login_required
-def show(request, show_id):
-	show_item = Show.objects.get(tvdbid = show_id)
+def show(request, pk):
+	show_item = Show.objects.get(pk = pk)
 	seasons_list = show_item.season_set.all()
 	banner = ''
-	req = urllib2.Request("http://yarrr.me/api/show?id="+show_id, None, {'user-agent':'Chrome/28.0.1500.72'})
+	req = urllib2.Request("http://yarrr.me/api/show?id="+show_item.tvdbid, None, {'user-agent':'Chrome/28.0.1500.72'})
 	opener = urllib2.build_opener()
 	f = opener.open(req)
 	showapi = json.load(f)
@@ -38,8 +38,8 @@ def show(request, show_id):
 	return HttpResponse(template.render(context))
 
 @login_required
-def season(request, season_id):
-	season_item = Season.objects.get(season_tvdbid = season_id)
+def season(request, pk):
+	season_item = Season.objects.get(pk = pk)
 	seasons_list = season_item.show.season_set.all()
 	episodes_list = season_item.episode_set.all()
 	template = loader.get_template('tv_season.html')
@@ -52,8 +52,8 @@ def season(request, season_id):
 	return HttpResponse(template.render(context))
 
 @login_required
-def episode(request, episode_id):
-	episode_item = Episode.objects.get(episode_tvdbid = episode_id)
+def episode(request, pk):
+	episode_item = Episode.objects.get(pk = pk)
 	v = Viewed(viewer=request.user,date_added=timezone.now())
 	v.save()
 	episode_item.views.add(v)

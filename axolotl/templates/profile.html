@@ -26,7 +26,9 @@
 			<tr>
 				<td>Roles</td>
 				<td>
-					<span class="label label-primary">User</span>
+					{% for g in user.groups.all %}
+						<span class="label label-primary">{{ g.name }}</span>
+					{% endfor %}
 					{% if user.is_staff %}
 						<span class="label label-warning">Staff</span>
 					{% endif %}

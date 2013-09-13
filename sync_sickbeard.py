@@ -21,6 +21,30 @@ opener = urllib2.build_opener()
 f = opener.open(req)
 showapi = json.load(f)
 
+def update_season(show_item,season_number):
+	try:
+		update_season = Season.objects.get(show=show_item,number=season_number)
+		return update_season
+		#print '		-Updated Season '+str(sea)
+	except Season.DoesNotExist:
+		new_season = Season(
+			show=show_item,
+			number=season_number,
+		)
+		new_season.save()
+		print '		-Added Season '+str(season_number)
+		return new_season
+
+def update_episodes(season_item):
+	req = urllib2.Request(settings.SICKBEARD_API_URL+"?cmd=show.seasons&tvdbid=" + season_item.show.tvdbid + "&season="+str(season_item.number), None, {'user-agent':'Chrome/28.0.1500.72'})
+	opener = urllib2.build_opener()
+	f = opener.open(req)
+	seasonapi_detail = json.load(f)
+
+	for epi in seasonapi_detail.data["name"]:
+		print epi
+
+
 #loop shows
 for slink in showapi["data"]:
 	show_id = slink
@@ -68,16 +92,8 @@ for slink in showapi["data"]:
 		update_show.save()
 
 		for sea in showapi_detail["data"]['season_list']:
-			try:
-				update_season = Season.objects.get(show=update_show,number=sea)
-				#print '		-Updated Season '+str(sea)
-			except Season.DoesNotExist:
-				new_season = Season(
-					show=update_show,
-					number=sea,
-				)
-				new_season.save()
-				print '		-Added Season '+str(sea)
+			season_item = update_season(update_show,sea)
+			update_episodes(season_item)
 			
 		print 'Updated Show - ' + showapi_detail["data"]['show_name']
 	except Show.MultipleObjectsReturned as e:

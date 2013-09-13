@@ -70,9 +70,9 @@
             {% endif %}
           </ul>
           {% if user.is_authenticated %}
-          <form class="navbar-form navbar-right" action="/inventory/search/" method="post">{% csrf_token %}
+          <form class="navbar-form navbar-right" action="/tv/search/" method="post">{% csrf_token %}
             <div class="form-group">
-              <input type="text" placeholder="Asset Tag" class="form-control" id="term" name="term">
+              <input type="text" placeholder="Search" class="form-control" id="term" name="term">
             </div>
             <button type="submit" class="btn btn-success">Search</button>
           </form>

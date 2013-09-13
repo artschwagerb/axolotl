@@ -8,4 +8,6 @@ urlpatterns = patterns('tv.views',
     url(r'^show/(?P<pk>\d+)/$', views.show, name='tv-show'),
     url(r'^season/(?P<pk>\d+)/$', views.season, name='tv-season'),
     url(r'^episode/(?P<pk>\d+)/$', views.episode, name='tv-episode'),
+
+    url(r'^search', views.search, name='tv-search'),
 )

@@ -74,7 +74,9 @@ for slink in showapi["data"]:
 		#print showapi_detail["data"]["show_name"]
 		new_show = Show(
 			name=showapi_detail["data"]['show_name'].encode('utf8')[:200],
+			date_next_episode=datetime.strptime(showapi_detail["data"]['next_ep_airdate'].encode('utf8'), "%Y-%m-%d"),
 			file_path=showapi_detail["data"]['location'].encode('utf8'),
+			genre=",".join(showapi_detail["data"]['genre']).encode('utf8')[:200],
 			tvdbid=show_id.encode('utf8'),
 			airs=showapi_detail["data"]['airs'].encode('utf8')[:50],
 			network=showapi_detail["data"]['network'].encode('utf8')[:50],

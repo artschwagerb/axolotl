@@ -4,9 +4,9 @@
 
 {% block content %}
 <h3>TV Shows</h3>
-{% if latest_show_list %}
+{% if show_list %}
     <ul class="list-unstyled">
-    {% for show in latest_show_list %}
+    {% for show in show_list %}
         <li><a href="{% url "tv-show" pk=show.id %}">{{ show.name }}</a></li>
     {% endfor %}
     </ul>

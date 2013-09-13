@@ -10,12 +10,14 @@ from django.utils import timezone
 
 from tv.models import *
 
+from django.db.models import Q
+
 @login_required
 def index(request):
-	latest_show_list = Show.objects.order_by('name')
+	show_list = Show.objects.order_by('name')
 	template = loader.get_template('tv_index.html')
 	context = RequestContext(request, {
-		'latest_show_list': latest_show_list,
+		'show_list': show_list,
 	})
 	return HttpResponse(template.render(context))
 
@@ -60,6 +62,16 @@ def episode(request, pk):
 	template = loader.get_template('tv_episode.html')
 	context = RequestContext(request, {
 		'episode': episode_item,
+	})
+	return HttpResponse(template.render(context))
+
+@login_required
+def search(request):
+	searchterm = request.POST['term']
+	show_list = Show.objects.filter(Q(name__icontains=searchterm) | Q(description__icontains=searchterm) | Q(genre__icontains=searchterm)).distinct().order_by('name')
+	template = loader.get_template('tv_index.html')
+	context = RequestContext(request, {
+		'show_list': show_list,
 	})
 	return HttpResponse(template.render(context))
 

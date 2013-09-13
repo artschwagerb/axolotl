@@ -6,6 +6,7 @@ import urllib2
 import json
 import datetime
 from datetime import datetime
+from django.conf import settings
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "axolotl.local_settings")
@@ -15,7 +16,7 @@ from tv.models import Show, Season, Episode
 from django.core.exceptions import MultipleObjectsReturned			
 
 #list all shows
-req = urllib2.Request("https://yarrr.me:9000/api/700dc3d941b692fc440cd3a5cfbe5a92/?cmd=shows", None, {'user-agent':'Chrome/28.0.1500.72'})
+req = urllib2.Request(settings.SICKBEARD_API_URL+"?cmd=shows", None, {'user-agent':'Chrome/28.0.1500.72'})
 opener = urllib2.build_opener()
 f = opener.open(req)
 showapi = json.load(f)
@@ -28,7 +29,7 @@ for slink in showapi["data"]:
 	print ''
 	print 'tvdbid: ' + show_id
 	#get show details
-	req = urllib2.Request("https://yarrr.me:9000/api/700dc3d941b692fc440cd3a5cfbe5a92/?cmd=show&tvdbid=" + show_id, None, {'user-agent':'Chrome/28.0.1500.72'})
+	req = urllib2.Request(settings.SICKBEARD_API_URL+"?cmd=show&tvdbid=" + show_id, None, {'user-agent':'Chrome/28.0.1500.72'})
 	opener = urllib2.build_opener()
 	f = opener.open(req)
 	showapi_detail = json.load(f)

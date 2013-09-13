@@ -7,7 +7,7 @@
 <h4>Seasons</h4>
 	<ul class="nav nav-pills">
 	{% for season in season_list %}
-        <li class="active"><a href="{% url "tv-show" pk=season.id %}">{{ season.number }}</a></li>
+        <li class="active"><a href="{% url "tv-season" pk=season.id %}">{{ season.number }}</a></li>
     {% endfor %}
 	</ul>
 <h4>Episodes</h4>

@@ -5,11 +5,11 @@
 {% block content %}
 <h3>TV Shows</h3>
 {% if latest_show_list %}
-    <dl class="dl-horizontal">
+    <ul class="list-unstyled">
     {% for show in latest_show_list %}
-        <dt><a href="/tv/show/{{ show.tvdbid }}">{{ show.name }}</a></dt><dd>{{ show.description }}</dd>
+        <li><a href="{% url "tv-show" pk=show.id %}">{{ show.name }}</a></li>
     {% endfor %}
-    </dl>
+    </ul>
 {% else %}
     <p>No shows are available.</p>
 {% endif %}

@@ -34,7 +34,7 @@ class Season(models.Model):
     number = models.IntegerField(default=0,null=True,blank=True)
     date_added = models.DateTimeField('date_added',auto_now_add=True, editable=False,blank=True,null=True)
     date_updated = models.DateTimeField('date_updated',auto_now_add=True, auto_now=True, editable=False,blank=True,null=True)
-    date_aired = models.DateTimeField('date aired')
+    date_aired = models.DateTimeField('date aired',null=True,blank=True)
     tvdbid = models.CharField(max_length=10,null=True,blank=True)
     def __unicode__(self):
         return u'%s - S%s (%s)' % (self.show.name, self.number, self.tvdbid)

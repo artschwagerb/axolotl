@@ -27,7 +27,7 @@ for slink in showapi["data"]:
 	print ''
 	print '-----------'
 	print ''
-	print 'tvdbid: ' + show_id
+	#print 'tvdbid: ' + show_id
 	#get show details
 	req = urllib2.Request(settings.SICKBEARD_API_URL+"?cmd=show&tvdbid=" + show_id, None, {'user-agent':'Chrome/28.0.1500.72'})
 	opener = urllib2.build_opener()
@@ -64,8 +64,20 @@ for slink in showapi["data"]:
 		update_show.network=showapi_detail["data"]['network'].encode('utf8')[:50]
 		#update_show.actors=showapi_detail["data"]['actors'].encode('utf8')[:400]
 		#update_show.runtime=showapi_detail["data"]['runtime'].encode('utf8')[:42] + ' minutes'
+
 		update_show.save()
 
+		for sea in showapi_detail["data"]['season_list']:
+			try:
+				update_season = Season.objects.get(show=update_show,number=sea)
+				#print '		-Updated Season '+str(sea)
+			except Season.DoesNotExist:
+				new_season = Season(
+					show=update_show,
+					number=sea,
+				)
+				new_season.save()
+				print '		-Added Season '+str(sea)
 			
 		print 'Updated Show - ' + showapi_detail["data"]['show_name']
 	except Show.MultipleObjectsReturned as e:

@@ -24,7 +24,7 @@ def index(request):
 @login_required
 def show(request, pk):
 	show_item = Show.objects.get(pk = pk)
-	seasons_list = show_item.season_set.all()
+	seasons_list = show_item.season_set.all().order_by('number')
 	banner = ''
 	req = urllib2.Request("http://yarrr.me/api/show?id="+show_item.tvdbid, None, {'user-agent':'Chrome/28.0.1500.72'})
 	opener = urllib2.build_opener()

@@ -24,7 +24,7 @@
     <dd>{{ episode.file_exists }}</dd>
 </dl>
 {% if protected_url %}
-	<a class="btn btn-primary" href="{{ protected_url }}">Watch Video</a>
+	<a class="btn btn-primary" target="_blank" href="{{ protected_url }}">Watch Video</a>
 {% else %}
 	<button type="button" class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-refresh"></span> Watch Video</button>
 {% endif %}

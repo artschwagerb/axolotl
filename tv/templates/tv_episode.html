@@ -12,7 +12,23 @@
     <dd>{{ episode.date_updated }}</dd>
   <dt>Rating</dt>
     <dd>{{ episode.rating }}</dd>
+  <dt>Hits</dt>
+    <dd>{{ episode.hits }}</dd>
+  <dt>Status</dt>
+    <dd>{{ episode.status }}</dd>
+  <dt>Location</dt>
+    <dd>{{ episode.location }}</dd>
+  <dt>File Size</dt>
+    <dd>{{ episode.file_size }}</dd>
+  <dt>File Exists</dt>
+    <dd>{{ episode.file_exists }}</dd>
+  <dt>Info Update</dt>
+  	{% if episode.info_update %}
+    <dd>Waiting to Update...</dd>
+    {% else %}
+    <dd><a class="btn btn-primary" href="{% url "tv-episode-update" pk=episode.id %}"><span class="glyphicon glyphicon-refresh"></span> Update Episode Information</a></dd>
+    {% endif %}
 </dl>
-    
+<a href="{{ protected_url }}">Click Here to Watch</a>
 {% endblock %}
 

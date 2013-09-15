@@ -48,8 +48,10 @@
   {% endif %}
 </dl>
 
-{% if not show.use_sickbeard %}
-  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span> Sickbeard Sync Disabled</button>
+{% if show.use_sickbeard %}
+  <div class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Sickbeard Sync Enabled</div>
+{% else %}
+  <div class="btn btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Sickbeard Sync Disabled</div>
 {% endif %}
 
 

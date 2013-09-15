@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}TV Shows{% endblock %}
+
+{% block content %}
+<h3>Admin Dashboard</h3>
+<ul class="list-unstyled">
+{% if show_count %}
+    <li>Show Count: {{ show_count }}</li>
+{% endif %}
+{% if season_count %}
+    <li>Season Count: {{ season_count }}</li>
+{% endif %}
+{% if episode_count %}
+    <li>Episode Count: {{ episode_count }}</li>
+{% endif %}
+{% if episode_need_update %}
+    <li>Episodes Needing Updates: {{ episode_need_update }}</li>
+{% endif %}
+{% if episode_views %}
+    <li>Total Episode Views: {{ episode_views }}</li>
+{% endif %}
+{% if episode_views_last24 %}
+    <li>Total Episode Views (Last 24 Hours): {{ episode_views_last24 }}</li>
+{% endif %}
+</ul>
+{% endblock %}

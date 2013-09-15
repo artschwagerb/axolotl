@@ -47,5 +47,11 @@
     <dd>{{ show.date_next_episode.date }}</dd>
   {% endif %}
 </dl>
+
+{% if not show.use_sickbeard %}
+  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span> Sickbeard Sync Disabled</button>
+{% endif %}
+
+
 {% endblock %}
 

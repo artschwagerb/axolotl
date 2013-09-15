@@ -70,6 +70,6 @@ class Episode_Play(models.Model):
     episode = models.ForeignKey(Episode)
     date_played = models.DateTimeField('date_played',auto_now_add=True, editable=False,blank=True,null=True)
     def __unicode__(self):
-        return u'%s - %s' % (self.viewer.username, self.date_viewed)
+        return u'%s - %s' % (self.viewer.username, self.date_played)
     class Meta:
         verbose_name_plural = "plays"

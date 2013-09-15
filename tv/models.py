@@ -20,6 +20,7 @@ class Show(models.Model):
     network = models.CharField(max_length=25,null=True,blank=True)
     actors = models.CharField(max_length=200,null=True,blank=True)
     runtime = models.CharField(max_length=25,null=True,blank=True)
+    use_sickbeard = models.BooleanField(default=True)
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.tvdbid)
     def updated_recently(self):
@@ -53,8 +54,13 @@ class Episode(models.Model):
     date_aired = models.DateTimeField('date aired',null=True,blank=True)
     rating = models.CharField(max_length=10,null=True,blank=True)
     tvdbid = models.CharField(max_length=10,null=True,blank=True)
+    status = models.CharField(max_length=25,null=True,blank=True,editable=False)
+    location = models.CharField(max_length=250,null=True,blank=True)
+    file_size = models.CharField(max_length=10,null=True,blank=True,editable=False)
+    file_exists = models.BooleanField(default=False)
+    info_update = models.BooleanField(default=False)
     def __unicode__(self):
-        return u'%s - S%sE%s %s (%s)' % (self.show.name, self.season.number, self.number, self.name, tvdbid)
+        return u'%s - S%sE%s %s' % (self.show.name, self.season.number, self.number, self.name)
     class Meta:
         verbose_name_plural = "episodes"
         permissions = (("can_play_episodes", "Can play episodes"),)

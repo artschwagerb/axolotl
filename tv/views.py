@@ -91,7 +91,7 @@ def episode(request, pk):
 		md5_hash = hashlib.md5(settings.MOD_AUTH_SECRET+file_name+hextime+settings.TEST_IP).hexdigest()
 		protected_url = settings.MOD_AUTH_PROTECTED_URL+md5_hash+'/'+hextime+file_name
 	else:
-		protected_url = 'Refresh Episode Information'
+		protected_url = ''
 	
 	template = loader.get_template('tv_episode.html')
 	context = RequestContext(request, {

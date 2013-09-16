@@ -5,11 +5,27 @@
 {% block content %}
 <h3>TV Shows</h3>
 {% if show_list %}
-    <ul class="list-unstyled">
+  <table class="table">
+  	<thead>
+  		<tr>
+  			<th>Name</th>
+  			<th>Next Episode</th>
+  			<th>Genre</th>
+  			<th>Description</th>
+  		</tr>
+
+  	</thead>
+   	<tbody>
     {% for show in show_list %}
-        <li><a href="{% url "tv-show" pk=show.id %}">{{ show.name }}</a></li>
+        <tr>
+        	<td><a href="{% url "tv-show" pk=show.id %}">{{ show.name }}</a></td>
+        	<td>{{ show.date_next_episode.date }}</td>
+        	<td>{{ show.genre }}</td>
+        	<td>{{ show.description }}</td>
+       	</tr>
     {% endfor %}
-    </ul>
+	</tbody>
+  </table
 {% else %}
     <p>No shows are available.</p>
 {% endif %}

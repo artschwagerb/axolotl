@@ -21,8 +21,10 @@
               </thead>
               <tbody>
 			{% for episode in episode_list %}
-        {% if User in episode.views.all %}
-          <tr class="info">
+        {% if episode.status = "Skipped" %}
+          <tr class="warning">
+        {% elif episode.status = "Wanted" %}
+          <tr class="danger">
         {% else %}
           <tr>
         {% endif %}

@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 
 {% block title %}{{ show.name }}{% endblock %}
-
+{% block head %}
+<link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/4.2/video.js"></script>
+<style type="text/css">
+  .vjs-control-bar { font-size: 100% }
+</style>
+{% endblock %}
 {% block content %}
 <h2>{{ episode.show.name }} </h2>
 <h4> {{ episode.name }} <small>{{ season_episode_tag }}</small></h4>
 <p>{{ episode.description }}</p>
+{% if protected_url %}
+<video id="my_video_1" class="video-js vjs-default-skin" controls
+ preload="auto" width="640" height="400" poster="http://i.imgur.com/aOao8rT.png"
+ data-setup="{}">
+ <source src="{{ protected_url }}" type='video/mp4'>
+</video>
+{% endif %}
 <dl class="dl-horizontal">
   <dt>Date Aired</dt>
     <dd>{{ episode.date_aired }}</dd>
@@ -24,6 +37,7 @@
   <dt>File Exists</dt>
     <dd>{{ episode.file_exists }}</dd>
 </dl>
+<p>
 {% if protected_url %}
 	<a class="btn btn-primary" target="_blank" href="{{ protected_url }}"><span class="glyphicon glyphicon-film"></span> Watch Video</a>
 {% else %}
@@ -34,6 +48,7 @@
 {% else %}
 	<a class="btn btn-warning" href="{% url "tv-episode-update" pk=episode.id %}"><span class="glyphicon glyphicon-refresh"></span> Update Information</a>
 {% endif %}
+</p>
 
 {% endblock %}
 

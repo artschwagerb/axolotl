@@ -127,7 +127,7 @@ INSTALLED_APPS = (
     'bitsync',
     'tv',
     'debug_toolbar',
-    'registration',
+    #'registration',
     #'invitation',
 )
 

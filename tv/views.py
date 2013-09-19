@@ -88,7 +88,7 @@ def episode(request, pk):
 
 		hextime = hex(int(time.time()))[2:]
 		file_name = episode_item.location.split(settings.MOD_AUTH_PROTECTED_PATH[:-1])[1]
-		md5_hash = hashlib.md5(settings.MOD_AUTH_SECRET+file_name+hextime+settings.TEST_IP).hexdigest()
+		md5_hash = hashlib.md5(settings.MOD_AUTH_SECRET+file_name+hextime+request.META['REMOTE_ADDR']).hexdigest()
 		protected_url = settings.MOD_AUTH_PROTECTED_URL+md5_hash+'/'+hextime+file_name
 	else:
 		protected_url = ''
@@ -97,6 +97,7 @@ def episode(request, pk):
 	context = RequestContext(request, {
 		'episode': episode_item,
 		'protected_url': protected_url,
+		'user_ip': request.META['REMOTE_ADDR'],
 	})
 	return HttpResponse(template.render(context))
 

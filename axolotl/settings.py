@@ -127,7 +127,11 @@ INSTALLED_APPS = (
     'bitsync',
     'tv',
     'debug_toolbar',
+    'registration',
+    #'invitation',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 14
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

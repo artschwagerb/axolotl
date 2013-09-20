@@ -19,8 +19,8 @@ urlpatterns = patterns('',
 	url(r'^accounts/profile/', 'axolotl.views.profile', name='profile'),
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
 			'template_name': 'login.html'
-	}, name="accounts/login"),
-	url(r'^logout/$', 'django.contrib.auth.views.logout_then_login',
+	}, name="login"),
+	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login',
 		name="logout"),
 
 	url(r'^bitsync/', include('bitsync.urls')),

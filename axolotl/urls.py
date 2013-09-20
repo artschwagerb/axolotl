@@ -17,9 +17,9 @@ urlpatterns = patterns('',
 	#(r'^accounts/', include('invitation.urls')),
 	#url(r'^accounts/', include('registration.backends.default.urls')),
 	url(r'^accounts/profile/', 'axolotl.views.profile', name='profile'),
-	url(r'^login/$', 'django.contrib.auth.views.login', {
+	url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
 			'template_name': 'login.html'
-	}, name="login"),
+	}, name="accounts/login"),
 	url(r'^logout/$', 'django.contrib.auth.views.logout_then_login',
 		name="logout"),
 

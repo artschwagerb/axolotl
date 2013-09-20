@@ -12,43 +12,51 @@
 <h2>{{ episode.show.name }} </h2>
 <h4> {{ episode.name }} <small>{{ season_episode_tag }}</small></h4>
 <p>{{ episode.description }}</p>
+<div class="row">
 {% if protected_url %}
+<div class="col-md-7">
 <video id="my_video_1" class="video-js vjs-default-skin" controls
  preload="auto" width="640" height="400" poster="http://i.imgur.com/aOao8rT.png"
  data-setup="{}">
  <source src="{{ protected_url }}" type='video/mp4'>
 </video>
+</div>
 {% endif %}
+<div class="col-md-5">
 <dl class="dl-horizontal">
-  <dt>Date Aired</dt>
-    <dd>{{ episode.date_aired }}</dd>
-  <dt>Date Updated</dt>
-    <dd>{{ episode.date_updated }}</dd>
-  <dt>Rating</dt>
-    <dd>{{ episode.rating }}</dd>
-  <dt>Hits</dt>
-    <dd>{{ episode.hits }}</dd>
-  <dt>Status</dt>
-    <dd>{{ episode.status }}</dd>
-  <dt>Location</dt>
-    <dd>{{ episode.location }}</dd>
-  <dt>File Size</dt>
-    <dd>{{ episode.file_size }}</dd>
-  <dt>File Exists</dt>
-    <dd>{{ episode.file_exists }}</dd>
+  <dt style="width: 0px;">Date Aired</dt>
+    <dd style="margin-left: 120px;">{{ episode.date_aired }}</dd>
+  <dt style="width: 0px;">Date Updated</dt>
+    <dd style="margin-left: 120px;">{{ episode.date_updated }}</dd>
+  <dt style="width: 0px;">Rating</dt>
+    <dd style="margin-left: 120px;">{{ episode.rating }}</dd>
+  <dt style="width: 0px;">Hits</dt>
+    <dd style="margin-left: 120px;">{{ episode.hits }}</dd>
+  <dt style="width: 0px;">Status</dt>
+    <dd style="margin-left: 120px;">{{ episode.status }}</dd>
+  <dt style="width: 0px;">Location</dt>
+    <dd style="margin-left: 120px;">{{ episode.location }}</dd>
+  <dt style="width: 0px;">File Size</dt>
+    <dd style="margin-left: 120px;">{{ episode.file_size }}</dd>
+  <dt style="width: 0px;">File Exists</dt>
+    <dd style="margin-left: 120px;">{{ episode.file_exists }}</dd>
 </dl>
-<p>
+<br />
+<div>
 {% if protected_url %}
-	<a class="btn btn-primary" target="_blank" href="{{ protected_url }}"><span class="glyphicon glyphicon-film"></span> Watch Video</a>
+  <a class="btn btn-primary" target="_blank" href="{{ protected_url }}"><span class="glyphicon glyphicon-film"></span> Watch Video</a>
 {% else %}
-	<button type="button" class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-film"></span> Watch Video</button>
+  <button type="button" class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-film"></span> Watch Video</button>
 {% endif %}
 {% if episode.info_update %}
-	<button type="button" class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-refresh"></span> Update Information</button>
+  <button type="button" class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-refresh"></span> Update Information</button>
 {% else %}
-	<a class="btn btn-warning" href="{% url "tv-episode-update" pk=episode.id %}"><span class="glyphicon glyphicon-refresh"></span> Update Information</a>
+  <a class="btn btn-warning" href="{% url "tv-episode-update" pk=episode.id %}"><span class="glyphicon glyphicon-refresh"></span> Update Information</a>
 {% endif %}
-</p>
+</div>
+</div>
+</div>
+
 
 <p>{{ user_ip }}</p>
 

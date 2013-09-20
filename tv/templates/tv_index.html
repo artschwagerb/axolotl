@@ -20,7 +20,11 @@
         <tr>
         	<td><a href="{% url "tv-show" pk=show.id %}">{{ show.name }}</a></td>
         	<td>{{ show.date_next_episode.date }}</td>
-        	<td>{{ show.genre }}</td>
+        	<td>
+            {% for g in show.genre_list %}
+              <span class="label label-default">{{ g }}</span>
+            {% endfor %}
+          </td>
         	<td>{{ show.description }}</td>
        	</tr>
     {% endfor %}

@@ -25,6 +25,8 @@ class Show(models.Model):
 		return u'%s (%s)' % (self.name, self.tvdbid)
 	def updated_recently(self):
 		return self.date_updated >= timezone.now() - datetime.timedelta(days=3)
+	def genre_list(self):
+		return self.genre.split(',')
 	class Meta:
 		verbose_name_plural = "shows"
 		ordering = ['name']

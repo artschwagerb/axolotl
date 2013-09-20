@@ -26,7 +26,7 @@ from django.core.exceptions import MultipleObjectsReturned
 def check_episodes(show_item, season_item):
 	headers = {'content-type': 'application/json'}
 	payload = {'cmd': 'show.seasons', 'tvdbid': show_item.tvdbid, 'season': season_item.number}
-	r = requests.get(sickbeard_api_url, params=payload)
+	r = requests.get(sickbeard_api_url, params=payload, verify=False)
 
 	episodeapi = r.json()
 
@@ -38,7 +38,7 @@ def check_episodes(show_item, season_item):
 			if update_episode.info_update:
 				headers = {'content-type': 'application/json'}
 				payload = {'cmd': 'episode', 'tvdbid': show_item.tvdbid, 'season': season_item.number, 'episode': str(epi)}
-				r = requests.get(sickbeard_api_url, params=payload)
+				r = requests.get(sickbeard_api_url, params=payload, verify=False)
 
 				episode_detail_api = r.json()
 
@@ -71,7 +71,7 @@ def check_show(id,show_id):
 
 		headers = {'content-type': 'application/json'}
 		payload = {'cmd': 'show', 'tvdbid': show_id}
-		r = requests.get(sickbeard_api_url, params=payload)
+		r = requests.get(sickbeard_api_url, params=payload, verify=False)
 
 		showapi_detail = r.json()
 
@@ -164,7 +164,7 @@ try:
 	payload = {'cmd': 'shows'}
 
 	#get json response
-	r = requests.get(sickbeard_api_url, params=payload)
+	r = requests.get(sickbeard_api_url, params=payload, verify=False)
 
 	#save json response to variable
 	showapi = r.json()

@@ -27,6 +27,9 @@ class Show(models.Model):
 		return self.date_updated >= timezone.now() - datetime.timedelta(days=3)
 	def genre_list(self):
 		return self.genre.split(',')
+	def is_favorite(self):
+		return Show_Favorite.objects.filter(show=self,user=User,active=True).count() > 0
+
 	class Meta:
 		verbose_name_plural = "shows"
 		ordering = ['name']
@@ -75,3 +78,15 @@ class Episode_Play(models.Model):
 		return u'%s - %s' % (self.viewer.username, self.date_played)
 	class Meta:
 		verbose_name_plural = "plays"
+
+class Show_Favorite(models.Model):
+	show = models.ForeignKey(Show)
+	user = models.ForeignKey(User)
+	active = models.BooleanField(default=True)
+	date_added = models.DateTimeField('date_added',auto_now_add=True, editable=False,blank=True,null=True)
+	date_updated = models.DateTimeField('date_updated',auto_now_add=True, auto_now=True, editable=False,blank=True,null=True)
+	def __unicode__(self):
+		return u'%s - %s' % (self.user.username, self.show.name)
+	class Meta:
+		verbose_name_plural = "favorites"
+		permissions = (("can_favorite_shows", "Can favorite shows"),)

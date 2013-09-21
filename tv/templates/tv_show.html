@@ -56,6 +56,9 @@
 {% if show.tvdbid %}
   <a class="btn btn-default" href="http://nullrefer.com/?http://thetvdb.com/?id={{ show.tvdbid }}&tab=series">TVDB</a>
 {% endif %}
+{% if is_favorite %}
+  <a class="btn btn-success" href="">Favorite</a>
+{% endif %}
 
 
 {% endblock %}

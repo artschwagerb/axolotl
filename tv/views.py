@@ -28,9 +28,19 @@ def index(request):
 	return HttpResponse(template.render(context))
 
 @login_required
+def show_favorites(request):
+	fav_list = Show_Favorite.objects.filter(user=request.user,active=True).order_by('show__name')
+	template = loader.get_template('tv_favorites.html')
+	context = RequestContext(request, {
+		'fav_list': fav_list,
+	})
+	return HttpResponse(template.render(context))
+
+@login_required
 def show(request, pk):
 	show_item = Show.objects.get(pk = pk)
 	seasons_list = show_item.season_set.all().order_by('number')
+	is_favorite = Show_Favorite.objects.filter(show=show_item,user=request.user,active=True).count() > 0
 	banner = ''
 	req = urllib2.Request("http://yarrr.me/api/show?id="+show_item.tvdbid, None, {'user-agent':'Chrome/28.0.1500.72'})
 	opener = urllib2.build_opener()
@@ -42,6 +52,7 @@ def show(request, pk):
 		'show': show_item,
 		'season_list': seasons_list,
 		'show_banner': banner,
+		'is_favorite': is_favorite,
 	})
 	return HttpResponse(template.render(context))
 

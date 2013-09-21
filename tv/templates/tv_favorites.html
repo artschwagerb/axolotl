@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}TV Shows{% endblock %}
+
+{% block content %}
+<h3>Favorites</h3>
+{% if fav_list %}
+  <table class="table">
+  	<thead>
+  		<tr>
+        <th>Banner</th>
+  			<th>Name</th>
+  		</tr>
+
+  	</thead>
+   	<tbody>
+    {% for fav in fav_list %}
+        <tr>
+          <td><a href="{% url "tv-show" pk=fav.show.id %}"><img style="width: 50%; height: 50%;" src="https://yarrr.me/tvmeta/{{ fav.show.tvdbid }}.jpg"></a>
+        	<td>{{ fav.show.name }}</td>
+       	</tr>
+    {% endfor %}
+	</tbody>
+  </table>
+{% else %}
+    <p>Add Shows to your Favorites.</p>
+{% endif %}
+{% endblock %}

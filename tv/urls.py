@@ -11,4 +11,5 @@ urlpatterns = patterns('tv.views',
     url(r'^episode/(?P<pk>\d+)/$', views.episode, name='tv-episode'),
     url(r'^episode/(?P<pk>\d+)/update/$', views.episode_update, name='tv-episode-update'),
     url(r'^search', views.search, name='tv-search'),
+    url(r'^favorites', views.show_favorites, name='tv-favorites'),
 )

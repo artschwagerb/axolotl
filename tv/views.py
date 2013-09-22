@@ -10,6 +10,8 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.utils import timezone
 
+from django.shortcuts import redirect
+
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -35,6 +37,19 @@ def show_favorites(request):
 		'fav_list': fav_list,
 	})
 	return HttpResponse(template.render(context))
+
+@login_required
+def show_favorite(request,pk):
+	show_item = Show.objects.get(pk = pk)
+	favorite = Show_Favorite.objects.filter(show=show_item,user=request.user)
+	if favorite.count() == 0:
+		new_favorite = Show_Favorite(show=show_item,user=request.user).save()
+	else:
+		update_favorite = Show_Favorite.objects.get(show=show_item,user=request.user)
+		update_favorite.active = not update_favorite.active
+		update_favorite.save()
+
+	return redirect('tv-show', pk=pk)
 
 @login_required
 def show(request, pk):
@@ -117,12 +132,8 @@ def episode_update(request, pk):
 	episode_item = Episode.objects.get(pk = pk)
 	episode_item.info_update=True
 	episode_item.save()
-	template = loader.get_template('tv_episode.html')
-	context = RequestContext(request, {
-		'episode': episode_item,
-		'protected_url': '',
-	})
-	return HttpResponse(template.render(context))
+
+	return redirect('tv-episode', pk=pk)
 
 @login_required
 def search(request):

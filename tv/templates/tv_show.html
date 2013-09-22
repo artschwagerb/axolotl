@@ -49,7 +49,7 @@
 </dl>
 
 {% if show.use_sickbeard %}
-  <div class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Sickbeard Sync Enabled</div>
+  <div class="btn btn-default"><span class="glyphicon glyphicon-ok-sign"></span> Sickbeard Sync Enabled</div>
 {% else %}
   <div class="btn btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Sickbeard Sync Disabled</div>
 {% endif %}
@@ -57,9 +57,10 @@
   <a class="btn btn-default" href="http://nullrefer.com/?http://thetvdb.com/?id={{ show.tvdbid }}&tab=series">TVDB</a>
 {% endif %}
 {% if is_favorite %}
-  <a class="btn btn-success" href="">Favorite</a>
+  <a class="btn btn-success" href="{% url "tv-show-favorite" pk=show.id %}"><span class="glyphicon glyphicon-thumbs-up"></span> Favorite</a>
+{% else %}
+  <a class="btn btn-default" href="{% url "tv-show-favorite" pk=show.id %}"><span class="glyphicon glyphicon-thumbs-up"></span> Add to Favorites</a>
 {% endif %}
-
 
 {% endblock %}
 

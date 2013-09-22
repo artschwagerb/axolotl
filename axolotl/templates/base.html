@@ -9,7 +9,15 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="../../assets/ico/favicon.png">
-  {% block head %}{% endblock %}
+  
+  <!-- CSS added by Django Template -->
+  {% block css %}{% endblock %}
+  <!-- /CSS added by Django Template -->
+
+  <!-- Scripts added by Django Template -->
+  {% block script-head %}{% endblock %}
+  <!-- /Scripts added by Django Template -->
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="../../assets/js/html5shiv.js"></script>
@@ -77,8 +85,28 @@
     <div class="container" style="padding-top: 60px;">
       {% block content %}{% endblock %}
 </div> <!-- /container -->
+<div class="container"> 
+<div class="row">
+        <div class="col-md-12">
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-8">
+            <a href="#">Terms of Service</a> |
+            <a href="#">Privacy</a> |   
+            <a href="#">Security</a>
+          </div>
+          <div class="col-md-4">
+            <p class="muted pull-right">© 2013 Company Name. All rights reserved</p>
+          </div>
+        </div>
+      </div>
+  </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-{% block scripts %}{% endblock %}
+
+<!-- Scripts added by Django Template -->
+  {% block script-body %}{% endblock %}
+  <!-- /Scripts added by Django Template -->
 </body>
 </html>

@@ -90,3 +90,22 @@ class Show_Favorite(models.Model):
 	class Meta:
 		verbose_name_plural = "favorites"
 		permissions = (("can_favorite_shows", "Can favorite shows"),)
+
+# class Video_Issue(models.Model):
+# 	show = models.ForeignKey(Show, blank=True, null=True, on_delete=models.SET_NULL)
+# 	season = models.ForeignKey(Season, blank=True, null=True, on_delete=models.SET_NULL)
+# 	episode = models.ForeignKey(Episode, blank=True, null=True, on_delete=models.SET_NULL)
+# 	date_added = models.DateTimeField('date_added',auto_now_add=True, editable=False,blank=True,null=True)
+# 	date_updated = models.DateTimeField('date_updated',auto_now_add=True, auto_now=True, editable=False,blank=True,null=True)
+# 	user = models.ForeignKey(User)
+# 	PROBLEM_CHOICES = (
+#         ('1', 'Open'),
+#         ('2', 'Closed'),
+#         ('3', 'In Progress'),
+#  		('4', 'Solved'),
+#     )
+#     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='1')
+#     cleared = models.BooleanField(default=False)
+
+# 	def __unicode__(self):
+# 		return u'%s - %s' % (self.user, self.date_added)

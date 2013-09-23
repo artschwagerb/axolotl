@@ -5,7 +5,7 @@
 {% block content %}
 <h3>TV Shows</h3>
 {% if show_list %}
-  <table class="table">
+  <table id="table_filtered" class="table">
   	<thead>
   		<tr>
   			<th>Name</th>
@@ -31,4 +31,12 @@
 {% else %}
     <p>No shows are available.</p>
 {% endif %}
+{% endblock %}
+{% block script-body %}
+<script src="http://media.artschwager.com/js/jquery.table-filter.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $("#table_filtered").addTableFilter();
+  });
+</script>
 {% endblock %}
